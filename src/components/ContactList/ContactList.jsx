@@ -7,12 +7,12 @@ import {
   ContactsList,
 } from './ContactListStyled';
 
-import { deleteContact } from 'redux/operation';
+import { deleteContact } from 'redux/contacts/operation';
 import {
   selectError,
   selectIsLoading,
   selectVisibleContacts,
-} from 'redux/useSelectors';
+} from 'redux/contacts/useSelectors';
 
 const ContactList = () => {
   const dispatch = useDispatch();
