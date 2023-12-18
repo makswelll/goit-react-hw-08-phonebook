@@ -1,27 +1,29 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { TaskList } from 'components/TaskList/TaskList';
-import { TaskEditor } from 'components/TaskEditor/TaskEditor';
-import { fetchTasks } from 'redux/tasks/operations';
-import { selectLoading } from 'redux/tasks/selectors';
+import ContactList from 'components/ContactList/ContactList';
 
-export default function Tasks() {
+import ContactForm from 'components/ContactForm/ContactForm';
+import Filter from 'components/Filter/Filter';
+import { fetchContacts } from 'redux/contacts/operation';
+import { selectIsLoading } from 'redux/contacts/useSelectors';
+
+export default function Contacts() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(fetchTasks());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
     <>
-      <Helmet>
-        <title>Your tasks</title>
-      </Helmet>
-      <TaskEditor />
+      <div>
+        <title>Your Contacts</title>
+      </div>
+      <ContactForm />
       <div>{isLoading && 'Request in progress...'}</div>
-      <TaskList />
+      <Filter />
+      <ContactList />
     </>
   );
 }
